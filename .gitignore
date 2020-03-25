@@ -1,0 +1,9 @@
+/.ccls-cache/
+/build/
+/bin/
+
+*.a
+*.o
+*.so
+
+tags

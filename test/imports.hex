@@ -1,0 +1,21 @@
+using std:http { Client as HttpClient, Response }
+using std:xml  { Parser as XMLParser, Document }
+using std:uri  { URI }
+# using github:watzon/hexscrape
+
+fn scrape(url: string | URI) ->
+	let page = HttpClient.get(url, redirects: 5)
+	match page ->
+		Response -> [
+			match page.code ->
+				200..299 -> page.body |> findLinks |> filter(.notNil) |> each(scrape)
+				_        -> pass
+		]
+		-        -> pass
+
+fn findLinks(body: string) ->
+	let parsed = XMLParser.parseHTML(body)
+	match parsed ->
+		Document -> 
+		_ return nil
+

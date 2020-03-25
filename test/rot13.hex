@@ -1,0 +1,11 @@
+fn rot13(c: char) ->
+	match c ->
+		['A'..'M' | 'a'..'m'] -> int_to_char(char_to_int(c) + 13) 
+		['N'..'Z' | 'n'..'z'] -> int_to_char(char_to_int(c) + 13) 
+		[]                    -> c
+
+fn rot13(s: string) ->
+	let result = string_to_chars(s)
+	map(result) |c| ->
+		rot13(c)
+	chars_to_string(result)

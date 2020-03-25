@@ -1,0 +1,8 @@
+# The standard FooBar coding challenge
+fn fibonnaci(n: int) ->
+	iter_from(1..n) |i| ->
+		match i ->
+			[. % 3 == 0] -> print("Foo")
+			[. % 5 == 0] -> print("Bar")
+			_            -> print(n)
+
